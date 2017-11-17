@@ -17,19 +17,6 @@ body {
   font-size: 2rem;
   margin: 0;
 }
-// html,
-// body {
-//   height: 100%;
-//   overflow: hidden;
-// }
-// #main {
-//   position: absolute;
-//   top: 0;
-//   bottom: 0;
-//   left: 0;
-//   right: 0;
-//   overflow: auto;
-// }
 .text-center {
   text-align: center;
 }
@@ -112,8 +99,8 @@ h1 {
   text-transform: uppercase;
 }
 .shopping-list {
-  // display: flex;
-  // flex-direction: column;
+  display: flex;
+  flex-direction: column;
   // align-items: stretch;
   //  overflow: auto;
   border-top: 1px solid rgba(0, 0, 0, 0.2);
@@ -127,7 +114,7 @@ h1 {
 
   transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 
-  margin: 1rem 0;
+  margin: 0.2rem 0;
   padding: 0;
 
   display: flex;
@@ -194,19 +181,23 @@ h1 {
 
 .favourites-list {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   grid-gap: 1rem;
   margin: 1.5rem 0 2rem;
   font-size: 1.5rem;
 }
 .favourite {
   background: #fff;
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  //  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
   transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 
   margin: 0;
   padding: 2rem 1.5rem;
   text-align: center;
+}
+.picked {
+  pointer-events: none;
+  opacity: 0.5;
 }
 
 /* loader adapted from: https://codepen.io/RRoberts/pen/pEXWEp */

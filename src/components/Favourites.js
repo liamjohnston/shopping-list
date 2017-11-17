@@ -1,12 +1,41 @@
 import React from 'react';
 import favourites from '../favourites';
-import Favourite from './Favourite';
+//import Favourite from './Favourite';
 import { Link } from 'react-router';
 
 class Favourites extends React.Component {
-  componentWillMount() {
-    const items = favourites.items;
-    this.setState({ favourites: items });
+  constructor() {
+    super();
+
+    this.selectFavourite = this.selectFavourite.bind(this);
+
+    this.state = {
+      favourites: favourites,
+      selectedFavourites: {}
+    };
+  }
+
+  setOrder(order) {
+    return {
+      order: order
+    };
+  }
+
+  selectFavourite(event) {
+    const selectedFavourite = {
+      name: event.target.innerHTML,
+      got: false,
+      order: parseInt(event.target.dataset.order, 10)
+    };
+
+    event.target.classList.add('picked');
+
+    const selectedFavourites = { ...this.state.selectedFavourites };
+
+    const timestamp = Date.now();
+    selectedFavourites[`item-${timestamp}`] = selectedFavourite;
+
+    this.setState({ selectedFavourites });
   }
 
   render() {
@@ -14,16 +43,29 @@ class Favourites extends React.Component {
       <div className="wrap">
         <div className="favourites-wrap">
           <h1>❤️ Favourites 🙌</h1>
-          <p>[not built yet...]</p>
           <div className="favourites-list">
-            {this.state.favourites.map(function(val) {
-              return <Favourite key={val} favouriteName={val} />;
-            })}
+            {Object.keys(this.state.favourites).map(key => (
+              <div
+                key={key}
+                className="favourite"
+                onClick={this.selectFavourite}
+                data-order={this.state.favourites[key].order}
+                style={this.setOrder(this.state.favourites[key].order)}
+              >
+                {this.state.favourites[key].name}
+              </div>
+            ))}
           </div>
         </div>
         <div className="text-center">
-          <Link to="/" className="btn">
-            Done
+          <Link
+            to={{
+              pathname: '/',
+              state: this.state.selectedFavourites
+            }}
+            className="btn"
+          >
+            Add to list
           </Link>
         </div>
       </div>

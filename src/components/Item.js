@@ -2,10 +2,13 @@ import React from 'react';
 
 class Item extends React.Component {
   render() {
-    const name = this.props.details.name;
-    const got = this.props.details.got;
+    const { name, got, order } = this.props.details;
+
+    const orderStyle = {
+      order: order || 0
+    };
     return (
-      <div className={`shopping-list-item got_${got}`}>
+      <div className={`shopping-list-item got_${got}`} style={orderStyle}>
         <input
           type="checkbox"
           defaultChecked={got}

@@ -29,6 +29,12 @@ class App extends React.Component {
       state: 'items',
       then() {
         this.setState({ isLoading: false });
+
+        const curState = { ...this.state.items };
+        const favs = this.props.location.state;
+        const newState = { ...curState, ...favs };
+
+        this.setState({ items: newState });
       }
     });
   }
@@ -58,8 +64,6 @@ class App extends React.Component {
 
     const timestamp = Date.now();
     items[`item-${timestamp}`] = newItem;
-
-    //TODO: add to start! so it's visible after
 
     //set state with new item
     this.setState(
@@ -96,6 +100,7 @@ class App extends React.Component {
             <Item
               key={key}
               index={key}
+              order={this.state.items[key].order}
               details={this.state.items[key]}
               toggleGot={this.toggleGot}
               removeItem={this.removeItem}

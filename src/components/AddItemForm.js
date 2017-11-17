@@ -11,7 +11,8 @@ class AddItemForm extends React.Component {
 
     const item = {
       name: this.name.value,
-      got: false
+      got: false,
+      order: 200
     };
 
     this.props.addItem(item);
